@@ -12,9 +12,6 @@ let data = [];
 getRandomUser();
 getRandomUser();
 getRandomUser();
-getRandomUser();
-getRandomUser();
-getRandomUser();
 
 //Fetch Random User and Add Money
 async function getRandomUser() {
@@ -24,14 +21,15 @@ async function getRandomUser() {
 
   const newUser = {
     name: `${user.name.first} ${user.name.last}`,
-    money: Math.floor(Math.random() * 100000),
+    money: Math.floor(Math.random() * 1000000),
   };
+
   addData(newUser);
 }
 
 //Double Money
 function doubleMoney() {
-  data = data.map((user)=> {
+  data = data.map(user => {
     return {...user, money: user.money * 2};
   });
 
@@ -47,7 +45,7 @@ function sortByRichest() {
 
 //Filter only Millionaires
 function showMillionaires() {
-  data = data.filter(user => user.money >= 1000000)
+  data = data.filter(user => user.money > 1000000)
 }
 
 //Calculate Total Wealth
@@ -72,7 +70,7 @@ function updateDOM(providedData = data) {
   //Clear main div
   main.innerHTML = "<h2><strong>Person</strong>Wealth</h2>";
 
-  providedData.forEach((item) => {
+  providedData.forEach(item => {
     const element = document.createElement("div");
     element.classList.add("person");
     element.innerHTML = `<strong>${item.name}</strong>${formatMoney(item.money)}`;
@@ -80,9 +78,9 @@ function updateDOM(providedData = data) {
   });
 }
 
-//Formar number as money - https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-strings
+//Format number as money - https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-strings
 function formatMoney(number) {
-  return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67
+  return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 }
 
 //Event Listeners 
