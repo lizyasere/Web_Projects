@@ -46,6 +46,10 @@ function sortByRichest() {
 //Filter only Millionaires
 function showMillionaires() {
   data = data.filter(user => user.money > 1000000)
+
+ //console.log('retetr', data);
+
+ updateDOM();
 }
 
 //Calculate Total Wealth
